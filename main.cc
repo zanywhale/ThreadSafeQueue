@@ -2,7 +2,7 @@
 
 int main(int argc, char *argv[]){
 
-  SafeQueue::SafeQueue sQ;
+  SafeQueue::SafeQueue<std::string> sQ();
 
   return 0;
 }
