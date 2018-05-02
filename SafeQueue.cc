@@ -1,8 +1,10 @@
 #include "SafeQueue.hh"
 
 namespace SafeQueue{
-  SafeQueue::SafeQueue(){}
+  template <typename T>
+  SafeQueue<T>::SafeQueue(){}
 
-  SafeQueue::~SafeQueue(){}
+  template <typename T>
+  SafeQueue<T>::~SafeQueue(){}
 }
 
