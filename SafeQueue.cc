@@ -25,5 +25,10 @@ namespace SafeQueue{
     queue.pop();
     return val;
   }
+
+  template <typename T>
+  bool SafeQueue<T>::Empty(){
+    return queue.empty()? true : false;
+  }
 }
 
