@@ -10,8 +10,8 @@ namespace SafeQueue{
   template <typename T>
   class SafeQueue{
   public:
-    SafeQueue();
-    virtual ~SafeQueue();
+    SafeQueue() = default;
+    virtual ~SafeQueue(){};
     void Push( const T& t );
     T& Pop();
     bool Empty();
@@ -20,6 +20,29 @@ namespace SafeQueue{
     mutable std::mutex q_mutex;
     mutable std::condition_variable q_cond;
   };
+
+  template <typename T>
+  void SafeQueue<T>::Push( const T& t ){
+    std::lock_guard<std::mutex> lock(q_mutex);
+    queue.push(t);
+    q_cond.notify_one();
+  }
+
+  template <typename T>
+  T& SafeQueue<T>::Pop(){
+    std::unique_lock<std::mutex> lock(q_mutex);
+    while(queue.empty()){
+      q_cond.wait(lock);
+    }
+    T &value = queue.front();
+    queue.pop();
+    return value;
+  }
+
+  template <typename T>
+  bool SafeQueue<T>::Empty(){
+    return queue.empty() ? true : false;
+  }
 
 }
 
