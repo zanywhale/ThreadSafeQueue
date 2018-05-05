@@ -4,6 +4,7 @@
 #include <iostream>
 #include <queue>
 #include <mutex>
+#include <condition_variable>
 
 namespace SafeQueue{
   template <typename T>
@@ -12,10 +13,12 @@ namespace SafeQueue{
     SafeQueue();
     virtual ~SafeQueue();
     void Push( const T& t );
-    void Pop();
+    T& Pop();
     bool Empty();
   private:
     std::queue<T> queue;
+    mutable std::mutex q_mutex;
+    mutable std::condition_variable q_cond;
   };
 
 }
