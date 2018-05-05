@@ -1,7 +1,6 @@
 #ifndef SAFE_QUEUE
 #define SAFE_QUEUE
 
-#include <iostream>
 #include <queue>
 #include <mutex>
 #include <condition_variable>
