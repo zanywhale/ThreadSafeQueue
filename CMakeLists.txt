@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-SET( SRC_FILES main.cc SafeQueue.cc SafeQueue.hh )
+SET( SRC_FILES main.cc SafeQueue.hh )
 PROJECT( SafeQueue )
 
 SET( CMAKE_CXX_STANDARD 11 )
