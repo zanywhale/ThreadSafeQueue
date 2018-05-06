@@ -13,7 +13,7 @@ namespace SafeQueue{
     SafeQueue() = default;
     virtual ~SafeQueue(){};
     void Push( const T& t );
-    T& Pop();
+    T Pop();
     bool Empty();
   private:
     std::queue<T> queue;
@@ -29,12 +29,12 @@ namespace SafeQueue{
   }
 
   template <typename T>
-  T& SafeQueue<T>::Pop(){
+  T SafeQueue<T>::Pop(){
     std::unique_lock<std::mutex> lock(q_mutex);
     while(queue.empty()){
       q_cond.wait(lock);
     }
-    T &value = queue.front();
+    T value = queue.front();
     queue.pop();
     return value;
   }
