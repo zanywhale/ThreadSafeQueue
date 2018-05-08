@@ -14,6 +14,9 @@ namespace SafeQueue{
     virtual ~SafeQueue(){};
     void Push( const T& t );
     T Pop();
+    T Front();
+    T Back();
+    T Size();
     bool Empty();
   private:
     std::queue<T> queue;
@@ -37,6 +40,21 @@ namespace SafeQueue{
     T value = queue.front();
     queue.pop();
     return value;
+  }
+
+  template <typename T>
+  T SafeQueue<T>::Front(){
+    return queue.front();
+  }
+
+  template <typename T>
+  T SafeQueue<T>::Back(){
+    return queue.back();
+  }
+
+  template <typename T>
+  T SafeQueue<T>::Size(){
+    return queue.size();
   }
 
   template <typename T>
